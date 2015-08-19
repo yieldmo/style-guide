@@ -1,6 +1,6 @@
 # Yieldmo JavaScript Style Guide() {
 
-*Style guide for (and by) the engineers @ Yieldmo. A mostly reasonable approach to JavaScript inspired by Airbnb*
+*A mostly reasonable approach to JavaScript inspired by Airbnb*
 
 [For the ES6-inclusive guide click here](es6/).
 
