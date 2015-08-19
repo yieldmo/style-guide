@@ -1,0 +1,22 @@
+{
+  "name": "yieldmo-style",
+  "version": "1.0.0",
+  "description": "A mostly reasonable approach to JavaScript.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish-all": "npm publish && cd ./packages/eslint-config-airbnb && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.aws.in.yieldmo.com:yieldmo/frontend-style-guide.git"
+  },
+  "keywords": [
+    "style guide",
+    "lint",
+    "es6",
+    "react",
+    "jsx",
+    "css"
+  ],
+  "license": "MIT"
+}
