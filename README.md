@@ -670,7 +670,7 @@
 
 ## Comments
 
-  - Use `/** ... */` for multi-line comments. Include a description, specify types and values for all parameters and return values.
+  - Use `/** ... */` for multi-line comments that precedes a function declaration or function expression. Include a description, specify types and values for all parameters and return values.
 
     ```javascript
     // bad
@@ -691,14 +691,50 @@
      * make() returns a new element
      * based on the passed in tag name
      *
-     * @param {String} tag
-     * @return {Element} element
+     * @param {String} tag Tag type to create
+     * @return {Element} element Element that's been created
      */
     function make(tag) {
 
       // ...stuff...
 
       return element;
+    }
+    ```
+
+- Use multipe lines of `//` for multi-line comments within a function declaration or function expression. Place the comments above the subject of the comment. Put an empty line before the starting of the comment. Refrain from using `/** ... */` in this case since it may impair hierarchy and readability.
+
+    ```javascript
+    // bad
+    /**
+     * ...function decription...
+     * ...parameters...
+     */
+    function getType() {
+      console.log('fetching type...');
+
+      /**
+       * ...stuff...
+       * ...stuff...
+       */
+      var type = this._type || 'no type';
+
+      return type;
+    }
+
+    // good
+    /**
+     * ...function decription...
+     * ...parameters...
+     */
+    function getType() {
+      console.log('fetching type...');
+
+      // ...stuff...
+      // ...stuff...
+      var type = this._type || 'no type';
+
+      return type;
     }
     ```
 
