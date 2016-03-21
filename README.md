@@ -702,7 +702,7 @@
     }
     ```
 
-- Use multipe lines of `//` for multi-line comments within a function declaration or function expression. Place the comments above the subject of the comment. Put an empty line before the starting of the comment. Refrain from using `/** ... */` in this case since it may impair hierarchy and readability.
+  - Use multipe lines of `//` for multi-line comments within a function declaration or function expression. Place the comments above the subject of the comment. Put an empty line before the starting of the comment. Refrain from using `/** ... */` in this case since it may impair hierarchy and readability.
 
     ```javascript
     // bad
