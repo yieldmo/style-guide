@@ -15,7 +15,10 @@ If you want to dive deeper, there is a more detailed code guide **[HERE ☞](htt
 2. [Whitespace](#whitespace)
 3. [Comments](#comments)
 4. [Format](#format)
-5. [Practical example](#example)
+5. [Components](#components)
+    - [Modifiers](#modifiers)
+    - [State](#state)
+6. [Practical example](#example)
 
 
 <a name="general-principles"></a>
@@ -247,8 +250,183 @@ preprocessor in use. The following guidelines are in reference to Sass.
 ```
 
 
+<a name="components"></a>
+## 5. Components
+
+> Use the `.component-descendant-descendant` pattern for components.
+
+Components help encapsulate your CSS and prevent run-away cascading styles and keep things readable and maintainable. Central to componentizing CSS is namespacing. Instead of using descendant selectors, like `.header img { … }`, you’ll create a new hyphen-separated class for the descendant element, like `.header-image { … }`.
+
+Here’s an example with descendant selectors:
+
+``` LESS
+.global-header {
+  background: hsl(202, 70%, 90%);
+  color: hsl(202, 0%, 100%);
+  height: 40px;
+  padding: 10px;
+}
+
+  .global-header .logo {
+    float: left;
+  }
+
+    .global-header .logo img {
+      height: 40px;
+      width: 200px;
+    }
+
+  .global-header .nav {
+    float: right;
+  }
+
+    .global-header .nav .item {
+      background: hsl(0, 0%, 90%);
+      border-radius: 3px;
+      display: block;
+      float: left; 
+      -webkit-transition: background 100ms;
+      transition: background 100ms;
+    }
+
+    .global-header .nav .item:hover {
+      background: hsl(0, 0%, 80%);
+    }
+```
+
+And here’s the same example with namespacing:
+
+``` LESS
+.global-header {
+  background: hsl(202, 70%, 90%);
+  color: hsl(202, 0%, 100%);
+  height: 40px;
+  padding: 10px;
+}
+
+  .global-header-logo {
+    float: left;
+  }
+
+    .global-header-logo-image {
+      background: url("logo.png");
+      height: 40px;
+      width: 200px;
+    }
+
+  .global-header-nav {
+    float: right;
+  }
+
+    .global-header-nav-item {
+      background: hsl(0, 0%, 90%);
+      border-radius: 3px;
+      display: block;
+      float: left; 
+      -webkit-transition: background 100ms;
+      transition: background 100ms;
+    }
+
+    .global-header-nav-item:hover {
+      background: hsl(0, 0%, 80%);
+    }
+```
+
+Namespacing keeps specificity low, which leads to fewer inline styles, !important declarations, and makes things more maintainable over time.
+
+Make sure **every selector is a class**. There should be no reason to use id or element selectors. No underscores or camelCase. Everything should be lowercase.
+
+Components make it easy to see relationships between classes. You just need to look at the name. You should still **indent descendant classes** so their relationship is even more obvious and it’s easier to scan the file. Stateful things like `:hover` should be on the same level.
+
+
+### Modifiers
+
+> Use the `.component-descendant.mod-modifier` pattern for modifier classes.
+
+Let’s say you want to use a component, but style it in a special way. We run into a problem with namespacing because the class needs to be a sibling, not a child. Naming the selector `.component-descendant-modifier` means the modifier could be easily confused for a descendant. To denote that a class is a modifier, use a `.mod-modifier` class.
+
+For example, we want to specially style our sign up button among the header buttons. We’ll add `.global-header-nav-item.mod-sign-up`, which looks like this:
+
+``` HTML
+<!-- HTML -->
+
+<a class="global-header-nav-item mod-sign-up">
+  Sign Up
+</a>
+```
+
+``` LESS
+// global-header.less
+
+.global-header-nav-item {
+  background: hsl(0, 0%, 90%);
+  border-radius: 3px;
+  display: block;
+  float: left; 
+  -webkit-transition: background 100ms;
+  transition: background 100ms;
+}
+
+.global-header-nav-item.mod-sign-up {
+  background: hsl(120, 70%, 40%);
+  color: #fff;
+}
+```
+
+We inherit all the `global-header-nav-item` styles and modify it with `.mod-sign-up`. This breaks our namespace convention and increases the specificity, but that’s exactly what we want. This means we don’t have to worry about the order in the file. For the sake of clarity, put it after the part of the component it modifies. Put modifiers on the same indention level as the selector it’s modifying.
+
+**You should never write a bare `.mod-` class**. It should always be tied to a part of a component. `.header-button.mod-sign-up { background: green; }` is good, but `.mod-sign-up { background: green; }` is bad. We could be using `.mod-sign-up` in another component and we wouldn’t want to override it.
+
+You’ll often want to overwrite a descendant of the modified selector. Do that like so:
+
+``` LESS
+.global-header-nav-item.mod-sign-up {
+  background: hsl(120, 70%, 40%);
+  color: #fff;
+
+  .global-header-nav-item-text {
+    font-weight: bold;
+  }
+
+}
+```
+
+Generally, we try and avoid nesting because it results in runaway rules that are impossible to read. This is an exception.
+
+Put modifiers at the bottom of the component file, after the original components.
+
+
+### State
+
+> Use the `.component-descendant.is-state` pattern for state. Manipulate `.is-` classes in JavaScript (but not presentation classes).
+
+State classes show that something is enabled, expanded, hidden, or what have you. For these classes, we’ll use a new `.component-descendant.is-state` pattern.
+
+Example: Let’s say that when you click the logo, it goes back to your home page. But because it’s a single page app, it needs to load things. You want your logo to do a loading animation. This should sound familiar to Trello users.
+
+You’ll use a `.global-header-logo-image.is-loading` rule. That looks like this:
+
+``` LESS
+.global-header-logo-image {
+  background: url("logo.png");
+  height: 40px;
+  width: 200px;
+}
+
+.global-header-logo-image.is-loading {
+  background: url("logo-loading.gif");
+}
+```
+
+JavaScript defines the state of the application, so we’ll use JavaScript to toggle the state classes. The `.component.is-state` pattern decouples state and presentation concerns so we can add state classes without needing to know about the presentation class. A developer can just say to the designer, “This element has an .is-loading class. You can style it however you want.”. If the state class were something like `global-header-logo-image--is-loading`, the developer would have to know a lot about the presentation and it would be harder to update in the future.
+
+Like modifiers, it’s possible that the same state class will be used on different components. You don’t want to override or inherit styles, so it’s important that **every component define its own styles for the state**. They should never be defined on their own. Meaning you should see `.global-header.is-hidden { display: none; }`, but never `.is-hidden { display: none; }` (as tempting as that may be). `.is-hidden` could conceivably mean different things in different components.
+
+We also don’t indent state classes. Again, that’s only for descendants. State classes should appear at the bottom of the file, after the original components and modifiers.
+
+
 <a name="example"></a>
-## 5. Practical example
+## 6. Practical example
 
 An example of various conventions.
 
