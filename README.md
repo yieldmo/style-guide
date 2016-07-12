@@ -1,6 +1,15 @@
 # Yieldmo Frond-end Development Style Guide() {
 
-This style guide covers coding styles for JavaScript (ES5, ES6 and React.js), CSS, linters, Editor Config. It also documents the code review etiquette and flow.
+This style guide covers coding styles for JavaScript (ES5, ES6 and React.js), CSS, linters, Editor Config. Click to check the details for each:
+
+  - [JavaScript](javascript/)
+  - [CSS](css/)
+  - [ES6](es6/)
+  - [React](react/)
+  - [Editor Config](editor-config/)
+  - [Linters](linters/)
+
+Below is the detailed documentation for review principles, etiquette, and flow.
 
 ## Table of Contents
 
