@@ -21,6 +21,8 @@ Below is the detailed documentation for review principles, etiquette, and flow.
   1. [Commit Message](#commit)
 
 ## Engineering Vision
+  
+  :)
 
 ## Review Principles
   
@@ -46,9 +48,11 @@ Below is the detailed documentation for review principles, etiquette, and flow.
 
 ## Branching Strategy
 
+  - TBD
 
 ## Commit Message
 
+  - TBD
 
 
 **[⬆ back to top](#table-of-contents)**
