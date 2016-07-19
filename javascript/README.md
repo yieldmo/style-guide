@@ -167,7 +167,7 @@
 
     ```javascript
     function trigger() {
-      var args = Array.prototype.slice.call(arguments);
+      var args = [].slice.call(arguments);
       ...
     }
     ```
@@ -1123,25 +1123,6 @@
     var val = parseInt(inputValue, 10);
     ```
 
-  - If for whatever reason you are doing something wild and `parseInt` is your bottleneck and need to use Bitshift for [performance reasons](http://jsperf.com/coercion-vs-casting/3), leave a comment explaining why and what you're doing.
-
-    ```javascript
-    // good
-    /**
-     * parseInt was the reason my code was slow.
-     * Bitshifting the String to coerce it to a
-     * Number made it a lot faster.
-     */
-    var val = inputValue >> 0;
-    ```
-
-  - **Note:** Be careful when using bitshift operations. Numbers are represented as [64-bit values](http://es5.github.io/#x4.3.19), but Bitshift operations always return a 32-bit integer ([source](http://es5.github.io/#x11.7)). Bitshift can lead to unexpected behavior for integer values larger than 32 bits. [Discussion](https://github.com/airbnb/javascript/issues/109). Largest signed 32-bit Int is 2,147,483,647:
-
-    ```javascript
-    2147483647 >> 0 //=> 2147483647
-    2147483648 >> 0 //=> -2147483648
-    2147483649 >> 0 //=> -2147483647
-    ```
 
   - Booleans:
 
@@ -1195,20 +1176,20 @@
 
     ```javascript
     // bad
-    function user(options) {
+    function userone(options) {
       this.name = options.name;
     }
 
-    var bad = new user({
+    var bad = new userone({
       name: 'nope'
     });
 
     // good
-    function User(options) {
+    function UserOne(options) {
       this.name = options.name;
     }
 
-    var good = new User({
+    var good = new UserOne({
       name: 'yup'
     });
     ```
@@ -1265,6 +1246,8 @@
       console.log(msg);
     };
     ```
+
+    The exception being anynomous function.
 
   - **Note:** IE8 and below exhibit some quirks with named function expressions.  See [http://kangax.github.io/nfe/](http://kangax.github.io/nfe/) for more info.
 
@@ -1431,6 +1414,8 @@
 
 ## Events
 
+  TODO: Clarify this part when encountered.
+
   - When attaching data payloads to events (whether DOM events or something more proprietary like Backbone events), pass a hash instead of a raw value. This allows a subsequent contributor to add more data to the event payload without finding and updating every handler for the event. For example, instead of:
 
     ```js
@@ -1490,67 +1475,6 @@
 
 **[⬆ back to top](#table-of-contents)**
 
-
-## jQuery
-
-  - Prefix jQuery object variables with a `$`.
-
-    ```javascript
-    // bad
-    var sidebar = $('.sidebar');
-
-    // good
-    var $sidebar = $('.sidebar');
-    ```
-
-  - Cache jQuery lookups.
-
-    ```javascript
-    // bad
-    function setSidebar() {
-      $('.sidebar').hide();
-
-      // ...stuff...
-
-      $('.sidebar').css({
-        'background-color': 'pink'
-      });
-    }
-
-    // good
-    function setSidebar() {
-      var $sidebar = $('.sidebar');
-      $sidebar.hide();
-
-      // ...stuff...
-
-      $sidebar.css({
-        'background-color': 'pink'
-      });
-    }
-    ```
-
-  - For DOM queries use Cascading `$('.sidebar ul')` or parent > child `$('.sidebar > ul')`. [jsPerf](http://jsperf.com/jquery-find-vs-context-sel/16)
-  - Use `find` with scoped jQuery object queries.
-
-    ```javascript
-    // bad
-    $('ul', '.sidebar').hide();
-
-    // bad
-    $('.sidebar').find('ul').hide();
-
-    // good
-    $('.sidebar ul').hide();
-
-    // good
-    $('.sidebar > ul').hide();
-
-    // good
-    $sidebar.find('ul').hide();
-    ```
-
-**[⬆ back to top](#table-of-contents)**
 
 
 ## ECMAScript 5 Compatibility
