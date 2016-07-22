@@ -13,12 +13,12 @@ Below is the detailed documentation for review principles, etiquette, and flow.
 
 ## Table of Contents
 
-  1. [Engineering Vision](#vision)
-  1. [Review Principles](#principles)
-  1. [Review Etiquette](#etiquette)
-  1. [Review Flow](#flow)
-  1. [Braching Strategy](#branching)
-  1. [Commit Message](#commit)
+  1. [Engineering Vision](#engineering-vision)
+  1. [Review Principles](#review-principles)
+  1. [Review Etiquette](#review-etiquette)
+  1. [Review Flow](#review-flow)
+  1. [Braching Strategy](#branching-strategy)
+  1. [Commit Messages](#commit-messages)
 
 ## Engineering Vision
   

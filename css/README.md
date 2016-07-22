@@ -310,32 +310,32 @@ And here’s the same example with namespacing:
   padding: 10px;
 }
 
-  .global-header-logo {
-    float: left;
-  }
+.global-header-logo {
+  float: left;
+}
 
-    .global-header-logo-image {
-      background: url("logo.png");
-      height: 40px;
-      width: 200px;
-    }
+.global-header-logo-image {
+  background: url("logo.png");
+  height: 40px;
+  width: 200px;
+}
 
-  .global-header-nav {
-    float: right;
-  }
+.global-header-nav {
+  float: right;
+}
 
-    .global-header-nav-item {
-      background: hsl(0, 0%, 90%);
-      border-radius: 3px;
-      display: block;
-      float: left; 
-      -webkit-transition: background 100ms;
-      transition: background 100ms;
-    }
+.global-header-nav-item {
+  background: hsl(0, 0%, 90%);
+  border-radius: 3px;
+  display: block;
+  float: left; 
+  -webkit-transition: background 100ms;
+  transition: background 100ms;
+}
 
-    .global-header-nav-item:hover {
-      background: hsl(0, 0%, 80%);
-    }
+.global-header-nav-item:hover {
+  background: hsl(0, 0%, 80%);
+}
 ```
 
 Namespacing keeps specificity low, which leads to fewer inline styles, !important declarations, and makes things more maintainable over time.
@@ -395,7 +395,6 @@ You’ll often want to overwrite a descendant of the modified selector. Do that 
   .global-header-nav-item-text {
     font-weight: bold;
   }
-
 }
 ```
 
@@ -452,9 +451,9 @@ An example of various conventions.
  * Example HTML:
  *
  * <div class="grid">
- *     <div class="cell cell-3"></div>
- *     <div class="cell cell-3"></div>
- *     <div class="cell cell-3"></div>
+ *   <div class="cell cell-3"></div>
+ *   <div class="cell cell-3"></div>
+ *   <div class="cell cell-3"></div>
  * </div>
  */
 
@@ -468,9 +467,9 @@ An example of various conventions.
  */
 
 .grid {
-    height: 100%;
-    font-size: 0; /* 1 */
-    white-space: nowrap; /* 2 */
+  height: 100%;
+  font-size: 0; /* 1 */
+  white-space: nowrap; /* 2 */
 }
 
 /**
@@ -484,22 +483,22 @@ An example of various conventions.
  */
 
 .cell {
-    position: relative;
-    display: inline-block;
-    overflow: hidden;
-    box-sizing: border-box;
-    height: 100%;
-    padding: 0 10px; /* 1 */
-    border: 2px solid #333;
-    vertical-align: top;
-    white-space: normal; /* 2 */
-    font-size: 16px; /* 3 */
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 0 10px; /* 1 */
+  border: 2px solid #333;
+  vertical-align: top;
+  white-space: normal; /* 2 */
+  font-size: 16px; /* 3 */
 }
 
 /* Cell states */
 
 .cell.is-animating {
-    background-color: #fffdec;
+  background-color: #fffdec;
 }
 
 /* Cell dimensions
@@ -516,7 +515,7 @@ An example of various conventions.
 
 .cell--detail,
 .cell--important {
-    border-width: 4px;
+  border-width: 4px;
 }
 ```
 
