@@ -13,16 +13,20 @@ Below is the detailed documentation for review principles, etiquette, and flow.
 
 ## Table of Contents
 
-  1. [Engineering Vision](#vision)
-  1. [Review Principles](#principles)
-  1. [Review Etiquette](#etiquette)
-  1. [Review Flow](#flow)
-  1. [Braching Strategy](#branching)
-  1. [Commit Message](#commit)
+  1. [Engineering Vision](#engineering-vision)
+  1. [Review Principles](#review-principles)
+  1. [Review Etiquette](#review-etiquette)
+  1. [Review Flow](#review-flow)
+  1. [Braching Strategy](#branching-strategy)
+  1. [Commit Messages](#commit-messages)
 
 ## Engineering Vision
   
-  :)
+  **We strive for collaboration, architecture and quality in the products we build:**
+
+  - In collaboration we value shared understanding, review process throughout and a culture of challenging ideas
+  - Architecturally we strive for flexible, componentized and modularity.
+  - In quality we value well tested and documented and clearly articulated code.
 
 ## Review Principles
   
@@ -40,19 +44,44 @@ Below is the detailed documentation for review principles, etiquette, and flow.
 
 ## Review Flow
 
-  - Each review should be an open and ongoing conversation, mark it as "WIP" in Gitlab.
-  - Push commits to remote often, ask for feedback early instead of lump them together in the end.
+  - Each review should be an open and ongoing conversation:
+    - The PR is a live conversation happening among developers.
+    - For new features or formats, mark it as "WIP" in Gitlab. Such PR may last over the course of sprint(s) and has various check points in the converstion.
+    - For bug fix or quick tweaks, create pull request the normal way. Such PR shouldn't contain too many lines of code changes.
+  - Continuously push commits to remote:
+    - Ask for feedback every a few commits proactively, or create a sub PR if necessary, instead of lump them together in the end.
+    - The author should specify: 
+      - What to be looked at specifically
+      - By what time should be code be reviewed
+  - When in doubt, feel free to pair program or schedule quick review sessions.
+  - Every commit should be accompanied by message that describes the code change well.
   - For major features, merge production code to feature branch often to ensure backwards compatibility.
-  - When in doubt, pair programming or schedule quick review sessions.
+  - Every PR should have a main assignee, who would sign off the PR and notify the author to merge the code in.
   - All code should be well-tested and well-documented during the review process.
 
 ## Branching Strategy
 
-  - TBD
+  - Formats or major features: `feature/...`, branch off from `dev`
+    - You can start sub branches off from the main feature branch: `feature/.../...`
+    - Merge sub feature branches to the main `feature/...` branch
+    - Eventually merge the main feature branch back to `dev`
+  - Prod fixes: `hotfix/...`, branch off from `master` directly
+  - Bug fixes: `bugfix/...`, branch off from `dev`
+  - A/B tests: `abtest/...`, should NOT be merged to `dev` or `master`
 
-## Commit Message
+## Commit Messages
 
-  - TBD
+  - Good commit messages matter, it makes `git log` a very powerful tool to get a full picture of what has changed
+  - Capitalize the subject line and limit it to 50 characters, do not end the subject line with a period
+  - For small changes, it's ok to leave the body empty; if the subject exceeds 50 characters, then consider add body
+  - When a commit merits a bit of explanation and context, it's necessary to write a body
+    - Separate subject from body with a blank line
+    - Use the body to explain what and why vs. how
+    - You can leave out details about how a change has been made, which is what comments in code is about
+  - Use the imperative mood in the subject line, it should always be able to complete the following sentence:
+    - If applied, this commit will your *subject line* here
+    - For example: *If applied, this commit will update getting started documentation*
+  - Reference: http://chris.beams.io/posts/git-commit/
 
 
 **[⬆ back to top](#table-of-contents)**
