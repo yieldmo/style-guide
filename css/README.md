@@ -33,7 +33,7 @@ If you want to dive deeper, there is a more detailed code guide **[HERE ☞](htt
   understandable.
 * All code in any code-base should look like a single person typed it, even
   when many people are contributing to it.
-* Strictly enforce the agreed-upon style.
+* Strictly enforce the agreed-upon style, which is this one.
 * If in doubt when deciding upon a style use existing, common patterns.
 
 
@@ -48,7 +48,7 @@ readability.
 * Choose between soft indents (spaces) or real tabs. Stick to your choice
   without fail. (Preference: spaces)
 * If using spaces, choose the number of characters used per indentation level.
-  (Preference: 4 spaces)
+  (Preference: 2 spaces)
 
 Tip: configure your editor to "show invisibles" or to automatically remove
 end-of-line whitespace.
@@ -104,6 +104,10 @@ Example:
  */
 
 /* Basic comment */
+
+**Note: Do not append CSS at the end of the file, always try to find the proper section where that CSS belongs to.**
+
+
 ```
 
 
@@ -123,7 +127,7 @@ in useful diffs and blames.
 * Use single or double quotes consistently. Preference is for double quotes,
   e.g., `content: ""`.
 * Quote attribute values in selectors, e.g., `input[type="checkbox"]`.
-* _Where allowed_, avoid specifying units for zero-values, e.g., `margin: 0`.
+* _Never_ specify units for zero-values, e.g., `margin: 0`.
 * Include a space after each comma in comma-separated property or function
   values.
 * Include a semi-colon at the end of the last declaration in a declaration
@@ -136,19 +140,19 @@ in useful diffs and blames.
 .selector-1,
 .selector-2,
 .selector-3[type="text"] {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    display: block;
-    font-family: helvetica, arial, sans-serif;
-    color: #333;
-    background: #fff;
-    background: linear-gradient(#fff, rgba(0, 0, 0, 0.8));
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  font-family: helvetica, arial, sans-serif;
+  color: #333;
+  background: #fff;
+  background: linear-gradient(#fff, rgba(0, 0, 0, 0.8));
 }
 
 .selector-a,
 .selector-b {
-    padding: 10px;
+  padding: 10px;
 }
 ```
 
@@ -160,32 +164,34 @@ a single, simple principle.
 Smaller teams may prefer to cluster related properties (e.g. positioning and
 box-model) together.
 
+This is optional for small amount of declarations, but for large amount of declarations. But should strive to avoid such situation.
+
 ```css
 .selector {
-    /* Positioning */
-    position: absolute;
-    z-index: 10;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+  /* Positioning */
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 
-    /* Display & Box Model */
-    display: inline-block;
-    overflow: hidden;
-    box-sizing: border-box;
-    width: 100px;
-    height: 100px;
-    padding: 10px;
-    border: 10px solid #333;
-    margin: 10px;
+  /* Display & Box Model */
+  display: inline-block;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  border: 10px solid #333;
+  margin: 10px;
 
-    /* Other */
-    background: #000;
-    color: #fff;
-    font-family: sans-serif;
-    font-size: 16px;
-    text-align: right;
+  /* Other */
+  background: #000;
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 16px;
+  text-align: right;
 }
 ```
 
@@ -211,12 +217,12 @@ be used; one example is shown below.
 
 ```css
 .selector {
-    background-image:
-        linear-gradient(#fff, #ccc),
-        linear-gradient(#f3c, #4ec);
-    box-shadow:
-        1px 1px 1px #000,
-        2px 2px 1px 1px #ccc inset;
+  background-image:
+    linear-gradient(#fff, #ccc),
+    linear-gradient(#f3c, #4ec);
+  box-shadow:
+    1px 1px 1px #000,
+    2px 2px 1px 1px #ccc inset;
 }
 ```
 
@@ -241,11 +247,11 @@ preprocessor in use. The following guidelines are in reference to Sass.
 
 ```scss
 .selector-1 {
-    @extend .other-rule;
-    @include clearfix();
-    @include box-sizing(border-box);
-    width: x-grid-unit(1);
-    // other declarations
+  @extend .other-rule;
+  @include clearfix();
+  @include box-sizing(border-box);
+  width: x-grid-unit(1);
+  // other declarations
 }
 ```
 
@@ -267,31 +273,31 @@ Here’s an example with descendant selectors:
   padding: 10px;
 }
 
-  .global-header .logo {
-    float: left;
-  }
+.global-header .logo {
+  float: left;
+}
 
-    .global-header .logo img {
-      height: 40px;
-      width: 200px;
-    }
+.global-header .logo img {
+  height: 40px;
+  width: 200px;
+}
 
-  .global-header .nav {
-    float: right;
-  }
+.global-header .nav {
+  float: right;
+}
 
-    .global-header .nav .item {
-      background: hsl(0, 0%, 90%);
-      border-radius: 3px;
-      display: block;
-      float: left; 
-      -webkit-transition: background 100ms;
-      transition: background 100ms;
-    }
+.global-header .nav .item {
+  background: hsl(0, 0%, 90%);
+  border-radius: 3px;
+  display: block;
+  float: left; 
+  -webkit-transition: background 100ms;
+  transition: background 100ms;
+}
 
-    .global-header .nav .item:hover {
-      background: hsl(0, 0%, 80%);
-    }
+.global-header .nav .item:hover {
+  background: hsl(0, 0%, 80%);
+}
 ```
 
 And here’s the same example with namespacing:
@@ -337,6 +343,8 @@ Namespacing keeps specificity low, which leads to fewer inline styles, !importan
 Make sure **every selector is a class**. There should be no reason to use id or element selectors. No underscores or camelCase. Everything should be lowercase.
 
 Components make it easy to see relationships between classes. You just need to look at the name. You should still **indent descendant classes** so their relationship is even more obvious and it’s easier to scan the file. Stateful things like `:hover` should be on the same level.
+
+This necessitates the use of single class with the exception of modifiers.
 
 
 ### Modifiers
