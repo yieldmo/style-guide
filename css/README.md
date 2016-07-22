@@ -105,10 +105,9 @@ Example:
 
 /* Basic comment */
 
-**Note: Do not append CSS at the end of the file, always try to find the proper section where that CSS belongs to.**
-
-
 ```
+
+**Note: Do not append CSS at the end of the file, always try to find the proper section where that CSS belongs to.**
 
 
 <a name="format"></a>
