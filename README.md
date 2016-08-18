@@ -34,29 +34,29 @@ Below is the detailed documentation for review principles, etiquette, and flow.
 
   - **Focus on the substance**: It could be easy to get caught up with formatting and semantics. However we should try to leave that to automation as much as possible. The focus should be having a solid understanding of the logic to a point that it feels comfortable to contribute to the same piece of code.
 
-  - **Make it a learning opportunity**: We all have something to learn from others, draw value from reading other people's code and collaborating with each other.
+  - **Make it a learning opportunity**: We all have something to learn from each other. Draw value from reading other people's code and collaborating with each other.
 
 ## Review Etiquette
   
-  - **Criticism**: Code review shouldn't be an opportunity to show technical superiority over other people, it's about iterate on solutions and make each other better.
+  - **Criticism**: Code review shouldn't be an opportunity to show technical superiority over other people; it's about iterating on solutions and making each other better.
   
-  - **Compliments**: Code review shouldn't be just about finding errors or constructive feedback, it's also a great place to promote good engineering. So do not shy away from giving your teammate a shout-out when you see brilliant thinking.
+  - **Compliments**: Code review shouldn't be just about finding errors or giving constructive feedback, it's also a great place to promote good engineering. So do not shy away from giving your teammate a shout-out when you see brilliant thinking.
 
 ## Review Flow
 
   - Each review should be an open and ongoing conversation:
     - The PR is a live conversation happening among developers.
-    - For new features or formats, mark it as "WIP" in Gitlab. Such PR may last over the course of sprint(s) and has various check points in the converstion.
-    - For bug fix or quick tweaks, create pull request the normal way. Such PR shouldn't contain too many lines of code changes.
+    - For new features or formats, mark it as "WIP" in Gitlab. Such a PR may last over the course of a sprint (or sprints) and have various check points in the converstion.
+    - For a bug fix or quick tweak, create a pull request the normal way. Such a PR shouldn't contain too many changed lines.
   - Continuously push commits to remote:
-    - Ask for feedback every a few commits proactively, or create a sub PR if necessary, instead of lump them together in the end.
+    - Ask for feedback every a few commits proactively, or create a sub-PR if necessary, instead of lumping them together in a single review.
     - The author should specify: 
       - What to be looked at specifically
       - By what time should be code be reviewed
   - When in doubt, feel free to pair program or schedule quick review sessions.
-  - Every commit should be accompanied by message that describes the code change well.
-  - For major features, merge production code to feature branch often to ensure backwards compatibility.
-  - Every PR should have a main assignee, who would sign off the PR and notify the author to merge the code in.
+  - Every commit should be accompanied by a message that describes the code change well.
+  - For major features, merge production code to the feature branch often to ensure backwards compatibility.
+  - Every PR should have a main assignee, who would sign off on the PR and notify the author to merge the code in.
   - All code should be well-tested and well-documented during the review process.
 
 ## Branching Strategy
@@ -71,14 +71,14 @@ Below is the detailed documentation for review principles, etiquette, and flow.
 
 ## Commit Messages
 
-  - Good commit messages matter, it makes `git log` a very powerful tool to get a full picture of what has changed
-  - Capitalize the subject line and limit it to 50 characters, do not end the subject line with a period
-  - For small changes, it's ok to leave the body empty; if the subject exceeds 50 characters, then consider add body
+  - Good commit messages matter. They make `git log` a very powerful tool to get a full picture of what has changed
+  - Capitalize the subject line and limit it to 50 characters. Do not end the subject line with a period
+  - For small changes, it's ok to leave the body empty; if the subject exceeds 50 characters, then consider adding a body
   - When a commit merits a bit of explanation and context, it's necessary to write a body
-    - Separate subject from body with a blank line
+    - Separate the subject from the body with a blank line
     - Use the body to explain what and why vs. how
     - You can leave out details about how a change has been made, which is what comments in code is about
-  - Use the imperative mood in the subject line, it should always be able to complete the following sentence:
+  - Use the imperative mood in the subject line. A commit subject should always be able to complete the following sentence:
     - If applied, this commit will your *subject line* here
     - For example: *If applied, this commit will update getting started documentation*
   - Reference: http://chris.beams.io/posts/git-commit/
