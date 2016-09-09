@@ -57,6 +57,7 @@ Below is the detailed documentation for review principles, etiquette, and flow.
   - Every commit should be accompanied by a message that describes the code change well.
   - For major features, merge production code to the feature branch often to ensure backwards compatibility.
   - Every PR should have a main assignee, who would sign off on the PR and notify the author to merge the code in.
+  - All "non-LGTM" comments are considered show-stoppers and must be addressed before merging.
   - All code should be well-tested and well-documented during the review process.
 
 ## Branching Strategy
